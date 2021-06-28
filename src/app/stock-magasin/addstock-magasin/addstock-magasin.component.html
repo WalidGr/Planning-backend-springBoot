@@ -1,0 +1,68 @@
+<mat-toolbar>
+  <span *ngIf="!stockMagasin.idstock">Nouveau STock_Magasin</span>
+  <span *ngIf="stockMagasin.idstock">Modifier STock_Magasin</span>
+
+
+  <span class="fill-remaining-space"></span>
+  <button (click)="onClose()" class="btn-dialog-close" mat-stroked-button tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+
+<form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off" class="normal-form">
+  <mat-grid-list cols="2" rowHeight="270px">
+    <mat-grid-tile>
+
+      <div class="controles-container">
+        <div class="form-group">
+          <input #id_stock="ngModel" [(ngModel)]="stockMagasin.idstock" name="idstock" placeholder="idstock"
+                 type="hidden">
+
+          <mat-form-field>
+            <input #codecie="ngModel" [(ngModel)]="stockMagasin.codecie" class="form-control" matInput
+                   name="codecie" placeholder="Code CIE" required>
+            <div *ngIf="codecie.invalid" class="validation-error">
+
+            </div>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input #codeproduit="ngModel" [(ngModel)]="stockMagasin.codeproduit" class="form-control" matInput
+                   name="codeproduit" placeholder="Code produit" required>
+            <div *ngIf="codeproduit.invalid" class="validation-error">
+
+            </div>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input #quantity="ngModel" [(ngModel)]="stockMagasin.quantity" class="form-control" matInput
+                   name="quantity" placeholder="Quantity" required>
+            <div *ngIf="quantity.invalid" class="validation-error">
+
+            </div>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controles-container">
+        <mat-form-field>
+          <mat-select #planning="ngModel" [(ngModel)]="stockMagasin.planning" class="selectpicker show-tick"
+                      data-width="fit"
+                      name="planning" placeholder="Planning" required>
+            <mat-option>Planning ID :</mat-option>
+            <ng-container *ngFor="let planning of plannings">
+              <mat-option [value]="planning">{{planning.planning_id}}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+
+
+        <div class="button-row">
+          <button [disabled]="form.invalid" color="primary" mat-raised-button type="submit"> Ajouter</button>
+        </div>
+      </div>
+
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

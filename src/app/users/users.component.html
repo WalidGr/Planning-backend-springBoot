@@ -1,0 +1,55 @@
+<div class="search-div">
+  <button (click)="onCreate()" mat-raised-button>
+    <mat-icon>add</mat-icon>
+    Nouveau USER
+  </button>
+  &nbsp;&nbsp;&nbsp;
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input [(ngModel)]="term" autocomplete="off" matInput placeholder="Cherchez un user">
+
+  </mat-form-field>
+
+</div>
+
+<div class="mat-elevation-z8">
+
+  <table class="table table-sm table-hover">
+    <thead>
+
+    <th>matricule</th>
+    <th>Nom</th>
+    <th>Prenom</th>
+    <th>username</th>
+
+    <th>Date création</th>
+    <th>Date mis à jour</th>
+    </thead>
+    <tr *ngFor="let emp of listUser | filter:term | paginate: { itemsPerPage: 5, currentPage: p } ">
+
+      <td>{{emp.matricule}}</td>
+      <td>{{emp.nom}}</td>
+      <td>{{emp.prenom}}</td>
+      <td>{{emp.username}}</td>
+
+      <td>{{emp.createdAt | date : 'dd MMMM yyyy HH:mm' }}</td>
+      <td>{{emp.updatedAt | date : 'dd MMMM yyyy HH:mm' }}</td>
+      <td>
+        <button (click)="onEdit(emp)" mat-icon-button>
+          <mat-icon>launch</mat-icon>
+        </button>
+      </td>
+      <td>
+        <button (click)="onDe(emp.id)" class="btn btn-sm btn-outlin-danger" color="warn" type="submit">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </td>
+    </tr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </table>
+
+
+</div>
+
+
+<lib-ngx-notification ></lib-ngx-notification>
+

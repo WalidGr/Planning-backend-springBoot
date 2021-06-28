@@ -1,0 +1,46 @@
+<div class="search-div">
+  <button mat-raised-button  (click)="onCreate()"
+      *ngxPermissionsOnly="['ADMIN']">
+  <mat-icon>add</mat-icon>Nouveau Planning
+ </button>
+  &nbsp;&nbsp;&nbsp;
+ <mat-form-field class="search-form-field" floatLabel="never">
+  <input matInput [(ngModel)]="term" placeholder=" Cherchez un planning" autocomplete="off">
+
+</mat-form-field>
+
+</div>
+
+<div class="mat-elevation-z8">
+
+<table class="table table-sm table-hover">
+    <thead>
+
+      <th>Date_debut</th>
+      <th>Date_fin</th>
+      <th>Date création</th>
+      <th>Date mis à jour</th>
+
+
+    </thead>
+  <tr *ngFor="let emp of listPlanning | filter:term | paginate: { itemsPerPage: 5, currentPage: p } ">
+
+      <td>{{emp.date_debut | date : 'dd MMMM yyyy'}}</td>
+      <td>{{emp.date_fin | date : 'dd MMMM yyyy'}}</td>
+      <td>{{emp.createdAt | date : 'dd MMMM yyyy HH:mm' }}</td>
+      <td>{{emp.updatedAt | date : 'dd MMMM yyyy HH:mm' }}</td>
+
+
+ <!--   <td><button mat-icon-button (click)="onDate(emp)"><mat-icon>settings</mat-icon></button></td> -->
+     <td><button mat-icon-button (click)="onEdit(emp)"><mat-icon>launch</mat-icon></button></td>
+      <td><button (click)="onDe(emp.planning_id)"
+                  color="warn" class="btn btn-sm btn-outlin-danger"><mat-icon>delete_outline</mat-icon></button></td>
+      <td><button (click)="clickAgenda(emp.planning_id)"   color="warn" class="btn btn-sm btn-outlin-danger"><mat-icon>settings</mat-icon></button></td>
+
+  </tr>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>
+
+
+</div>
+<lib-ngx-notification ></lib-ngx-notification>

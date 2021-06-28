@@ -1,0 +1,111 @@
+<mat-toolbar>
+  <span *ngIf="!user.id">Nouveau USER</span>
+  <span *ngIf="user.id">Modifier USER</span>
+
+
+  <span class="fill-remaining-space"></span>
+  <button (click)="onClose()" class="btn-dialog-close" mat-stroked-button tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+
+<form #form="ngForm" (submit)="onSubmit(form)"  autocomplete="off" class="normal-form">
+  <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <div class="form-group">
+          <input #id="ngModel" [(ngModel)]="user.id" name="id" placeholder="id" type="hidden">
+
+          <mat-form-field>
+            <input #nom="ngModel" [(ngModel)]="user.nom" class="form-control" matInput name="nom"
+                   placeholder="nom" required>
+            <div *ngIf="nom.invalid" class="validation-error">
+            </div>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input #prenom="ngModel" [(ngModel)]="user.prenom" class="form-control" matInput name="prenom"
+                   placeholder="prenom" required>
+            <div *ngIf="prenom.invalid" class="validation-error">
+            </div>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input #matricule="ngModel" [(ngModel)]="user.matricule" class="form-control" matInput
+                   name="matricule" placeholder="matricule" required>
+            <div *ngIf="matricule.invalid" class="validation-error">
+            </div>
+          </mat-form-field>
+
+
+          <div class="button-row">
+            <button [disabled]="form.invalid" color="primary" mat-raised-button type="submit"> Valider</button>
+          </div>
+
+        </div>
+
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controles-container">
+        <div class="form-group">
+
+          <mat-form-field>
+            <input #username="ngModel" [(ngModel)]="user.username" class="form-control" matInput
+                   name="username" placeholder="username" required>
+            <div *ngIf="username.invalid" class="validation-error">
+            </div>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="!user.id">
+            <input #password="ngModel" [(ngModel)]="user.password" class="form-control" matInput name="password"
+                   placeholder="password" required type="password">
+            <div *ngIf="password.invalid" class="validation-error">
+            </div>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="!user.id">
+            <input #confirmedPassword="ngModel" [(ngModel)]="confirmPassword" class="form-control" matInput
+                   name="confirmedPassword" [pattern]="user.password" placeholder="confirmedPassword" required
+                   type="password">
+            <div *ngIf="confirmedPassword.invalid && form.submitted" class="validation-error">
+            <div *ngIf="confirmedPassword.errors.required">Confirm Mot de passe réquis</div>
+            <div *ngIf="confirmedPassword.errors.pattern">Les mot de passe ne sont pas identiques</div>
+            </div>
+          </mat-form-field>
+
+
+          <mat-form-field>
+            <mat-label>Roles</mat-label>
+            <mat-select name="roles" multiple [(ngModel)]="user.roles"
+                        [compareWith]="customCompareHobby">
+              <mat-option *ngFor="let role of roles" [value]="role">{{role.roleName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <!--  <mat-form-field>
+            <input #roleName="ngModel" [(ngModel)]="user.roleName" class="form-control" matInput
+                   name="roleName" placeholder="roleName" required>
+            <div *ngIf="roleName.invalid" class="validation-error">
+            </div>
+          </mat-form-field>-->
+          <!--
+           <div class="form-group" class="col-mod-2">
+             <label>Roles</label>
+              <select  class="selectpicker show-tick" data-width="fit" name="roles" #role="ngModel" [(ngModel)]="user.roles" class="form-control" >
+               <option  [ngValue]="roles.roleName" *ngFor="let roles of roles">
+
+                 {{roles.roleName}}
+               </option>
+               </select>
+         </div>  -->
+
+
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+
+
+

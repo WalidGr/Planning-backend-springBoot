@@ -1,0 +1,73 @@
+<a class="image" >
+  <img src="assets/dist/img/image001.png"   alt="User Image">
+</a>
+<br> <br>
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Bonjour <a  style="color: blue"> SAGE{{currentUser?.matricule}}</a></h5>
+
+
+            <p class="card-text" >
+
+            </p>
+
+
+          </div>
+        </div>
+
+        <div class="card card-primary card-outline">
+          <div class="card-body">
+            <h5 class="card-title">Profile</h5>
+
+            <p class="card-text">
+              <a style="text-align: center">
+
+                <i class="fas fa-user-cog bg-white"></i> &nbsp;
+                <EM>{{currentUser?.prenom}}</EM> &nbsp;
+                <EM>{{currentUser?.nom}}</EM> <br>
+                <i class="fas fa-envelope bg-white"></i> &nbsp;
+                {{currentUser?.username}} <br>
+              </a>
+            </p>
+
+          </div>
+        </div><!-- /.card -->
+      </div>
+      <!-- /.col-md-6 -->
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="m-0">Date de creation</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Compte SagemCom</h6>
+
+            <p class="card-text">
+              <i class="fas fa-business-time bg-white"></i> &nbsp;
+              <small>{{currentUser.createdAt |date}}</small></p>
+
+          </div>
+        </div>
+
+        <div class="card card-primary card-outline">
+          <div class="card-header">
+            <h5 class="m-0"></h5>
+          </div>
+          <div class="card-body">
+
+
+            <p class="card-text">Bienvenue chez Sagemcom <br>
+              <EM>...</EM></p>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+

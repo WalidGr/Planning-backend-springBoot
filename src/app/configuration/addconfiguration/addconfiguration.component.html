@@ -1,0 +1,79 @@
+<mat-toolbar>
+	<span  *ngIf="emp == null">Nouveau Configuration</span>
+  <span  *ngIf="emp !== null">Modifier Configuration</span>
+ 
+ 
+	<span class="fill-remaining-space"></span>
+	<button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+
+<form #form="ngForm" (submit)="onSubmit(form)" class="normal-form"  autocomplete="off" *ngIf="emp == null" >
+	<mat-grid-list cols="2" rowHeight="230px">
+		<mat-grid-tile>
+    
+      <div class="controles-container">
+				<input  placeholder="id_configuration" type="hidden" name="id_configuration" #id_configuration="ngModel" [(ngModel)]="prdConf.formConfiguration.id_configuration">
+				<div class="form-group">
+        
+          <mat-form-field>
+						<input  name="chainecnx"  matInput placeholder="Url" #chainecnx="ngModel" [(ngModel)]="prdConf.formConfiguration.chainecnx" class="form-control" required>
+						<div class="validation-error" *ngIf="chainecnx.invalid">	
+						</div>
+          </mat-form-field>
+          
+
+				</div>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controles-container">
+      
+        <mat-form-field>
+          <input  name="etat"  matInput placeholder="Etat" #etat="ngModel" [(ngModel)]="prdConf.formConfiguration.etat" class="form-control" required>
+          <div class="validation-error" *ngIf="etat.invalid">	
+          </div>
+        </mat-form-field>
+         
+        <div class="button-row">
+					<button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" > Ajouter</button>
+				</div>
+			
+      </div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</form>
+
+
+<form #form="ngForm" (submit)="onSubmit(form)" class="normal-form"  autocomplete="off" *ngIf="!!emp" >
+	<mat-grid-list cols="2" rowHeight="230px">
+		<mat-grid-tile>
+    
+      <div class="controles-container">
+				<input  placeholder="id_configuration" type="hidden" name="id_configuration" #id_configuration="ngModel" [(ngModel)]="emp.id_configuration">
+				<div class="form-group">
+        
+          <mat-form-field>
+						<input  name="chainecnx"  matInput placeholder="Url" #chainecnx="ngModel" [(ngModel)]="emp.chainecnx" class="form-control" required>
+						<div class="validation-error" *ngIf="chainecnx.invalid">	
+						</div>
+          </mat-form-field>
+          
+				</div>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controles-container">
+      
+        <mat-form-field>
+          <input  name="etat"  matInput placeholder="Etat" #etat="ngModel" [(ngModel)]="emp.etat" class="form-control" required>
+          <div class="validation-error" *ngIf="etat.invalid">	
+          </div>
+        </mat-form-field>
+
+				<div class="button-row">
+					<button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" > Modifier</button>
+				</div>
+      </div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</form>

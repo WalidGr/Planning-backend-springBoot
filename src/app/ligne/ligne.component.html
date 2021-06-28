@@ -1,0 +1,34 @@
+<div class="search-div">
+  <button mat-raised-button  (click)="onCreate()">
+  <mat-icon>add</mat-icon>Nouveau Ligne
+ </button>
+  &nbsp;&nbsp;&nbsp;
+ <mat-form-field class="search-form-field" floatLabel="never">
+  <input matInput [(ngModel)]="term" placeholder="Cherchez une ligne" autocomplete="off">
+
+</mat-form-field>
+
+</div>
+
+<div class="mat-elevation-z8">
+
+<table class="table table-sm table-hover">
+    <thead>
+
+      <th>Ligne</th>
+      <th>Date création</th>
+      <th>Date mis à jour</th>
+    </thead>
+  <tr *ngFor="let emp of prdLigne.list | filter:term | paginate: { itemsPerPage: 5, currentPage: p } ">
+
+      <td>{{emp.nom_ligne}}</td>
+      <td>{{emp.createdAt | date : 'dd MMMM yyyy HH:mm' }}</td>
+      <td>{{emp.updatedAt | date : 'dd MMMM yyyy HH:mm' }}</td>
+     <td><button mat-icon-button (click)="onEdit(emp)"><mat-icon>launch</mat-icon></button></td>
+      <td><button (click)="onDe(emp.id_ligne)" type="submit"  color="warn" class="btn btn-sm btn-outlin-danger"><mat-icon>delete_outline</mat-icon></button></td>
+  </tr>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>
+
+
+</div>

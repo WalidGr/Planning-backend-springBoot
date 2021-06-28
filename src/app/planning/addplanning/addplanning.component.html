@@ -1,0 +1,67 @@
+<mat-toolbar>
+  <span *ngIf="!planning.planning_id">Nouveau Planning</span>
+  <span *ngIf="planning.planning_id">Modifier Date Planning</span>
+
+
+  <span class="fill-remaining-space"></span>
+  <button (click)="onClose()" class="btn-dialog-close" mat-stroked-button tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+
+<form #form="ngForm" (submit)="onSubmit(form)"  autocomplete="off" class="normal-form">
+  <mat-grid-list cols="1" rowHeight="230px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input #planning_id="ngModel" [(ngModel)]="planning.planning_id" name="planning_id" placeholder="planning_id"
+               type="hidden">
+        <div class="form-group">
+          <mat-form-field>
+            <input #date_debut="ngModel" [(ngModel)]="planning.date_debut"
+                   [min]="minDate | date:'yyyy-MM-dd'"
+                   class="form-control" matInput
+                   name="date_debut" placeholder="date_debut" required
+                   (change)="changeDate()"
+                   type="date">
+            <div *ngIf="date_debut.invalid" class="validation-error">
+
+            </div>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input #date_fin="ngModel" [(ngModel)]="planning.date_fin"
+                   class="form-control" matInput name="date_fin" placeholder="date_fin"
+                   readonly="true" required type="date">
+            <div *ngIf="date_fin.invalid" class="validation-error">
+
+            </div>
+          </mat-form-field>
+
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-select #planningTypes="ngModel" [(ngModel)]="planning.planningType" class="selectpicker show-tick" data-width="fit"
+                        name="planningType" placeholder="plannigType" required>
+              <mat-option>planningType ID :</mat-option>
+              <ng-container *ngFor="let planningType of planningType">
+                <mat-option [value]="planningType">{{planningType.ptype_name}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="button-row" *ngIf="!planning.planning_id">
+          <button [disabled]="form.invalid" color="primary" mat-raised-button type="submit"> Ajouter</button>
+
+        </div>
+
+        <div class="button-row" *ngIf="planning.planning_id">
+          <button [disabled]="form.invalid" color="primary" mat-raised-button type="submit"> Modifier</button>
+
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+
+

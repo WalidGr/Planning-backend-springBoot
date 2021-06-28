@@ -1,0 +1,85 @@
+<div class="card">
+  <div class="card-body ">
+
+    <perfect-scrollbar [config]="config" style="max-width: 1000px">
+
+
+      <table class=" table-bordered table-hover dataTable" width="600%">
+
+        <thead>
+
+        <tr>
+          <th style="text-align: center;"></th>
+          <th *ngFor="let tab of data?.dates" style="text-align: center;">{{tab  | date: 'dd/MM/yyyy'}}</th>
+
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr *ngFor="let tab of data?.lines; let indexI =index" class="jsgrid-grid-body">
+          <td>{{tab?.ligne?.nom_ligne}}</td>
+
+          <td *ngFor="let le of  tab?.lineEquipes; let indexJ =index" style="vertical-align: center">
+
+            <div class="row">
+
+              <div *ngFor=" let ec of le?.detaiPlannings" class="card card-secondary "
+                   style="width: 13rem; margin-left: 15px;   margin-right: 10px;margin-top: 10px">
+                <div class="card-header ">
+                  {{ec.equips.nom_equipe}}
+
+                </div>
+                <div class="card-body">
+
+                  <mat-form-field  >
+                    <mat-label> Code Produit:</mat-label>
+                    <input matInput [readonly]="disable"  placeholder="Input" (blur)="update(ec)"  [(ngModel)]="ec.code_produit"
+                           type="text" />
+                  <!--  <input matInput (keyup)="update(ec)" *ngxPermissionsOnly="['USER']" [(ngModel)]="ec.code_produit"
+                           [readonly]
+                           type="text"/>-->
+
+                  </mat-form-field>
+                  <mat-form-field class="example-form-field">
+                    <mat-label> Quantité:</mat-label>
+                    <input [readonly]="disable" (blur)="update(ec)" [(ngModel)]="ec.besoin" matInput required/>
+
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Cie</mat-label>
+                    <mat-select [disabled]="disable" (selectionChange)="update(ec)" [(ngModel)]="ec.cies"
+                                [compareWith]="customCompareHobby"
+                                name="cie">
+
+                      <mat-option *ngFor="let cie of cies" [value]="cie">{{cie.nom_cie}}</mat-option>
+
+                    </mat-select>
+                  </mat-form-field>
+
+                </div>
+              </div>
+
+              <div class="card card-default "
+                   style="width: 8rem; margin-left: 9px;   margin-right: 10px;margin-top: 10px">
+                <div class="card-header">
+                  Total
+
+                </div>
+                <div class="card-body">
+                  {{tab.total}}
+                </div>
+              </div>
+
+            </div>
+
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </perfect-scrollbar>
+  </div>
+
+</div>

@@ -1,0 +1,126 @@
+
+
+
+<br> <br>
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><i class="nav-icon fas fa-chart-bar"></i> &nbsp;<i>Les statistiques :</i></h5>
+
+
+            <p class="card-text" >
+
+            </p>
+
+
+          </div>
+        </div>
+
+        <div class="card card-primary card-outline">
+          <div class="card-body">
+            <h5 class="card-title">Recherchez selon :</h5>
+
+            <p class="card-text">
+              <a style="text-align: center">
+
+
+                <mat-checkbox #f  required >
+                  Charge du Production
+                </mat-checkbox >
+                <br>
+                <mat-checkbox #z  required >
+                  CIe (produit)
+                </mat-checkbox >
+                <br>
+                <mat-checkbox #v required >
+                  Ligne
+                </mat-checkbox >
+                <br>
+                <mat-checkbox #a  required >
+                  Equipe
+                </mat-checkbox >
+
+              </a>
+            </p>
+
+          </div>
+        </div><!-- /.card -->
+      </div>
+      <!-- /.col-md-6 -->
+      <div class="col-lg-6">
+
+
+        <div class="card" [hidden]="z.checked -1 || v.checked || f.checked ||a.checked">
+          <div class="card-header">
+            <h5 class="m-0">Cie</h5>
+          </div>
+          <div class="card-body">
+
+
+            <p class="card-text">
+              <i class="fas fa-chart-pie bg-white"></i> &nbsp;
+              Vue génerale sur les produits "Cie" /Quantité .<br> <br>
+
+            <button mat-raised-button  routerLink="/chartproduit"   > Filtrez</button>
+
+          </div>
+        </div>
+        <div class="card"[hidden]="v.checked -1 || f.checked || a.checked ||z.checked">
+          <div class="card-header">
+            <h5 class="m-0">Ligne</h5>
+          </div>
+          <div class="card-body">
+
+
+            <p class="card-text">
+              <i class="fas fa-chart-bar bg-white"></i> &nbsp; Vue génerale sur les lignes du productions<br><br>
+              <button mat-raised-button   routerLink="/chartligne"   >Filtrez</button>
+
+
+          </div>
+        </div>
+        <div class="card" [hidden]="f.checked -1 || v.checked || a.checked ||z.checked">
+          <div class="card-header">
+            <h5 class="m-0">Charge du production</h5>
+          </div>
+
+          <div class="card-body">
+
+
+            <p class="card-text">
+              <i class="fas fa-chart-line bg-white"></i> &nbsp;
+              Vue génerale sur les charge du productions
+              </p>
+            <button mat-raised-button  routerLink="/chartplanning"   > Filtrez</button>
+
+          </div>
+        </div>
+        <div class="card" [hidden]="a.checked -1 || v.checked || f.checked ||z.checked">
+          <div class="card-header">
+            <h5 class="m-0">Equipe</h5>
+          </div>
+          <div class="card-body">
+
+
+            <p class="card-text">
+              <i class="fas fa-chart-bar bg-white"></i> &nbsp; Vue génerale sur les equipes du productions<br><br>
+              <button mat-raised-button  routerLink="/chartequipe"   > Filtrez</button>
+             </p>
+
+          </div>
+        </div>
+
+
+      </div>
+      <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+
+
+
+

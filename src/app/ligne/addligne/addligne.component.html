@@ -1,0 +1,68 @@
+
+<mat-toolbar>
+	<span  *ngIf="emp == null">Nouveau Ligne</span>
+  <span  *ngIf="emp !== null">Modifier Ligne</span>
+ 
+ 
+	<span class="fill-remaining-space"></span>
+	<button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+
+<form #form="ngForm" (submit)="onSubmit(form)" class="normal-form"  autocomplete="off" *ngIf="emp == null" >
+	<mat-grid-list cols="1" rowHeight="230px">
+		<mat-grid-tile>
+			<div class="controles-container">
+				<input  placeholder="id_ligne" type="hidden" name="id_ligne" #id_ligne="ngModel" [(ngModel)]="prdLigne.formLigne.id_ligne">
+				<div class="form-group">
+					<mat-form-field>
+						<input  name="nom_ligne"  matInput placeholder="Ligne" #nom_ligne="ngModel" [(ngModel)]="prdLigne.formLigne.nom_ligne" class="form-control" required>
+						<div class="validation-error" *ngIf="nom_ligne.invalid">
+							
+						</div>
+					</mat-form-field>
+				</div>
+			  <div class="form-group">
+			   <mat-form-field>
+				<mat-select class="selectpicker show-tick" data-width="fit" name="planning_type" #planning_types="ngModel" [(ngModel)]="prdLigne.formLigne.planning_type"  placeholder="Planning_type" required>
+				  <mat-option>Planning_type :</mat-option>
+				  <ng-container *ngFor="let planning_type of planning_type">
+					<mat-option [value]="planning_type">{{planning_type.ptype_name}}</mat-option>
+				  </ng-container>
+				</mat-select>
+			  </mat-form-field>
+			  </div>
+			
+				<div class="button-row">
+					<button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" > Ajouter</button>
+					
+				</div>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</form>
+
+
+
+
+<form #form="ngForm" (submit)="onSubmit(form)" class="normal-form"  autocomplete="off" *ngIf="!!emp" >
+	<mat-grid-list cols="1" rowHeight="230px">
+		<mat-grid-tile>
+			<div class="controles-container">
+				<input  placeholder="id_ligne" type="hidden" name="id_ligne" #id_ligne="ngModel" [(ngModel)]="emp.id_ligne">
+				<div class="form-group">
+					<mat-form-field>
+						<input  name="nom_ligne"  matInput placeholder="Ligne" #nom_ligne="ngModel" [(ngModel)]="emp.nom_ligne" class="form-control" required>
+						<div class="validation-error" *ngIf="nom_ligne.invalid">
+							
+						</div>
+					</mat-form-field>
+				</div>
+			
+				<div class="button-row">
+					<button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" > Modifier</button>
+					
+				</div>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</form>

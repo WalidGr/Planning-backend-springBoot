@@ -1,0 +1,54 @@
+<mat-toolbar>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button routerLink="/chartA"  tabIndex="-1"><i><mat-icon>clear</mat-icon></i></button>
+</mat-toolbar>
+<br>
+<br>
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+
+
+        <div class="card card-primary card-outline">
+          <div class="card-header">
+            <h5 class="m-0">Cie</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">harge du Produit selon Quantité /Code produit</h6>
+
+
+            <div class="chart-wrapper" >
+
+              <canvas id="statss">{{Chart2}}</canvas>
+            </div>
+          </div>
+        </div><!-- /.card -->
+      </div>
+      <!-- /.col-md-6 -->
+      <div class="col-lg-6">
+
+
+        <div class="card card-primary card-outline">
+          <div class="card-header">
+            <h5 class="m-0">Cie</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Produit SagemCom</h6>
+
+            <div class="chart-wrapper" >
+
+              <canvas id="canvas">{{Chart}}</canvas>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+
+
+

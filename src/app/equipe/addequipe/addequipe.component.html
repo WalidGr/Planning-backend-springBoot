@@ -1,0 +1,57 @@
+<mat-toolbar>
+  <span  *ngIf="emp !== null">Modifier Equipe</span>
+  <span  *ngIf="emp == null">Nouveau Equipe</span>
+ 
+	<span class="fill-remaining-space"></span>
+	<button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form #form="ngForm" (submit)="onSubmit(form)" class="normal-form"  autocomplete="off" *ngIf="emp == null" >
+	<mat-grid-list cols="1" rowHeight="230px">
+		<mat-grid-tile>
+			<div class="controles-container">
+				<input  placeholder="nom Equipe" type="hidden" name="id_equipe" #id_equipe="ngModel" [(ngModel)]="prdEquipe.formEquipe.id_equipe">
+				<div class="form-group">
+					<mat-form-field>
+						<input placeholder="Equipe" name="nom_equipe"  matInput placeholder="Equipe" #nom_equipe="ngModel" [(ngModel)]="prdEquipe.formEquipe.nom_equipe" class="form-control" required>
+						<div class="validation-error" *ngIf="nom_equipe.invalid">
+							this is oblacation
+						</div>
+					</mat-form-field>
+				</div>
+			
+				<div class="button-row">
+					<button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" > Ajouter</button>
+				</div>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</form>
+
+
+
+<form #form="ngForm" (submit)="onSubmit(form)" class="normal-form"  autocomplete="off"  *ngIf="!!emp">
+	<mat-grid-list cols="1" rowHeight="230px">
+		<mat-grid-tile>
+			<div class="controles-container">
+				<input  placeholder="nom Equipe" type="hidden" name="id_equipe" #id_equipe="ngModel" [(ngModel)]="emp.id_equipe">
+				<div class="form-group">
+					<mat-form-field>
+						<input placeholder="Equipe" name="nom_equipe"  matInput placeholder="Equipe" #nom_equipe="ngModel" [(ngModel)]="emp.nom_equipe" class="form-control" required>
+						<div class="validation-error" *ngIf="nom_equipe.invalid">
+							this is oblacation
+						</div>
+					</mat-form-field>
+				</div>
+			
+				<div class="button-row">
+					<button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" > Modifier</button>
+				</div>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</form>
+
+
+
+
+

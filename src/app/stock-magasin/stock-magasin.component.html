@@ -1,0 +1,33 @@
+<div class="search-div">
+
+
+ <mat-form-field class="search-form-field" floatLabel="never">
+  <input matInput [(ngModel)]="term" placeholder="Cherchez un Cie , un produit ,Quantity" autocomplete="off">
+
+</mat-form-field>
+
+</div>
+
+<div class="mat-elevation-z8">
+
+<table class="table table-sm table-hover">
+    <thead>
+
+      <th>Code CIE</th>
+      <th>Code produit</th>
+      <th>Quantity</th>
+
+    </thead>
+  <tr *ngFor="let emp of listStock | filter:term | paginate: { itemsPerPage: 5, currentPage: p } ">
+
+      <td>{{emp.cie?.nom_cie}}</td>
+      <td>{{emp.codeProduit}}</td>
+      <td>{{emp.quantite}}</td>
+
+
+  </tr>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>
+
+
+</div>
